@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#071211" />
+  <title>Dead Signal — Last Light at Verdant-9</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">DS<span>•</span></span><div><b>DEAD SIGNAL</b><small>VERDANT-9 / INCIDENT 04</small></div></div>
+      <div class="objective"><span class="live-dot"></span><span id="objective-text">HOLD THE ATRIUM</span></div>
+      <button id="pause-button" class="icon-button" aria-label="Pause">Ⅱ</button>
+    </header>
+
+    <section class="mission-card" id="mission-card">
+      <div class="eyebrow">NIGHT SHIFT // 02:17 AM</div>
+      <h1>THE GARDEN<br><em>ISN'T</em> DEAD.</h1>
+      <p>Contain the breach. Keep moving. Don't let them reach the lights.</p>
+      <button id="start-button" class="primary-button">ENTER THE ATRIUM <span>↗</span></button>
+      <div class="mission-foot"><span>FIELD KIT <b>MK-I SIDEARM</b></span><span>THREAT LEVEL <b class="orange">RISING</b></span></div>
+    </section>
+
+    <div class="hud hidden" id="hud">
+      <div class="wave-panel"><small>INCIDENT</small><div class="wave-number" id="wave-number">01</div><div class="wave-caption" id="wave-caption">FIRST CONTACT</div></div>
+      <div class="center-status"><div class="enemy-count"><span class="pulse"></span><b id="enemy-count">0</b> HOSTILES</div><div class="wave-progress"><span id="wave-progress"></span></div></div>
+      <div class="score-panel"><small>FIELD CREDITS</small><b id="score">0000</b></div>
+      <div class="crosshair"><i></i><i></i><i></i><i></i><b></b></div>
+      <div class="bottom-hud">
+        <div class="health-wrap"><div class="health-label"><span>VITALS</span><b id="health-value">100</b></div><div class="health-track"><span id="health-bar"></span></div></div>
+        <div class="weapon-card"><div class="weapon-icon">⌁</div><div class="weapon-name"><small>ACTIVE WEAPON</small><b id="weapon-name">SERVICE PISTOL</b></div><div class="ammo"><b id="ammo-mag">12</b><span>/</span><small id="ammo-reserve">60</small></div></div>
+      </div>
+      <div class="reload-toast" id="reload-toast">RELOADING<span>···</span></div>
+      <div class="interaction" id="interaction"></div>
+      <div class="hit-flash" id="hit-flash"></div>
+    </div>
+
+    <div class="mobile-controls hidden" id="mobile-controls">
+      <div class="stick-zone" id="stick-zone"><div class="stick-base"><div class="stick-knob" id="stick-knob"></div></div><small>MOVE</small></div>
+      <div class="mobile-actions"><button id="reload-button" class="touch-button reload-touch">↻<small>RELOAD</small></button><button id="fire-button" class="touch-button fire-touch"><span>✦</span><small>FIRE</small></button></div>
+    </div>
+
+    <div class="screen-overlay hidden" id="pause-overlay"><div class="modal-card"><div class="eyebrow">FIELD PAUSED</div><h2>Catch your breath.</h2><p>The atrium is still waiting.</p><button id="resume-button" class="primary-button">BACK TO THE FIGHT <span>↗</span></button></div></div>
+    <div class="screen-overlay hidden" id="end-overlay"><div class="modal-card"><div class="eyebrow" id="end-eyebrow">SIGNAL LOST</div><h2 id="end-title">The dark got you.</h2><p id="end-copy">You held the line longer than most.</p><button id="restart-button" class="primary-button">RUN IT BACK <span>↻</span></button></div></div>
+    <div class="toast" id="toast"></div>
+    <footer class="controls-hint" id="controls-hint"><span>WASD</span> MOVE <i>•</i> <span>CLICK</span> FIRE <i>•</i> <span>R</span> RELOAD <i>•</i> <span>SPACE</span> DODGE</footer>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
