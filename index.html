@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#090d12">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23d5ee6b' d='M0 0h32v24l-8 8H0z'/%3E%3Ctext x='7' y='24' font-family='sans-serif' font-weight='900' font-size='24' fill='%23090d12'%3EN%3C/text%3E%3C/svg%3E">
+  <title>NIGHTFALL — Outbreak Protocol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <canvas id="game" aria-label="NIGHTFALL survival game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">N</span><div><b>NIGHTFALL</b><small>OUTBREAK PROTOCOL <i>///</i> 07</small></div></div>
+      <div class="signal"><span class="live-dot"></span> FIELD LINK <b>STABLE</b></div>
+      <button id="pauseBtn" class="pause-btn" aria-label="Pause game"><span>Ⅱ</span></button>
+    </header>
+    <section class="round-panel"><span class="micro-label">THREAT LEVEL</span><div class="round-number" id="roundNumber">01</div><div class="round-status"><span class="round-dot"></span><span id="roundStatus">AWAITING DEPLOYMENT</span></div></section>
+    <div class="wave-toast" id="waveToast"><small>INCOMING HOSTILES</small><strong>WAVE <span id="toastRound">01</span></strong></div>
+    <div class="crosshair" id="crosshair"><i></i><i></i><i></i><i></i><span></span></div>
+    <div class="hit-flash" id="hitFlash"></div>
+    <div class="center-message" id="centerMessage"></div>
+    <div class="hud-bottom">
+      <div class="vitals"><div class="vital-head"><span>VITALS</span><b id="healthText">100</b></div><div class="health-track"><i id="healthFill"></i></div><div class="status-line"><span class="heartbeat">♥</span> COMBAT READY <span class="separator">/</span> <span id="armorText">ARMOR 00</span></div></div>
+      <div class="score-block"><span class="micro-label">FIELD CREDITS</span><strong id="scoreText">000000</strong><small>ELIMS <b id="killsText">00</b></small></div>
+      <div class="ammo-block"><div class="weapon-name"><span class="weapon-icon">⌁</span><div><b>V-9 <span>CARBINE</span></b><small id="weaponMode">SEMI-AUTO / STANDARD</small></div></div><div class="ammo-count"><strong id="ammoText">12</strong><span>/</span><b id="reserveText">084</b></div><div class="ammo-caption">MAGAZINE <span>///</span> RESERVE</div></div>
+    </div>
+    <div class="interaction" id="interaction"><span class="keycap">◆</span><span id="interactionText">COVER BLOCKS HOSTILES</span></div>
+    <div class="reload-indicator" id="reloadIndicator">RELOADING <i></i></div>
+    <div class="mobile-controls" id="mobileControls"><div class="touch-stick" id="touchStick"><div class="stick-knob"></div></div><button id="fireTouch">FIRE</button><button id="reloadTouch">↻</button><button id="dashTouch">DASH</button></div>
+    <div class="start-screen" id="startScreen">
+      <div class="intro-copy"><div class="eyebrow"><span></span> OPERATION: ASHEN DISTRICT <span>—</span> 02:17 AM</div><h1>THE CITY<br><em>IS LOST.</em></h1><p>The quarantine line has fallen. Hold the perimeter.<br>Every wave gets closer. Every shot counts.</p><div class="mission-data"><div><small>LOCATION</small><b>SECTOR 09 / OLD QUARTER</b></div><div><small>OPERATOR</small><b>FIELD UNIT // SOLO</b></div></div><button class="deploy-btn" id="startBtn"><span>DEPLOY</span><b>→</b></button><div class="start-hint">WASD MOVE <i>·</i> MOUSE AIM & FIRE <i>·</i> R RELOAD <i>·</i> SPACE DASH</div></div>
+      <div class="start-art"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-cross"></div><div class="art-silhouette"><span class="head"></span><span class="torso"></span><span class="arm"></span><span class="rifle"></span><span class="leg leg-a"></span><span class="leg leg-b"></span></div><div class="art-coordinate">09° 21' N<br>SECTOR // 09</div><div class="art-warning">BIOHAZARD<br><b>CONTAINMENT BREACH</b></div></div>
+    </div>
+    <div class="pause-overlay hidden" id="pauseOverlay"><div class="pause-card"><span class="eyebrow">FIELD LINK // PAUSED</span><h2>TAKE A<br><em>BREATHER.</em></h2><p>The perimeter can wait. For a moment.</p><button class="deploy-btn" id="resumeBtn"><span>RESUME OPERATION</span><b>→</b></button><div class="pause-controls">WASD MOVE <i>·</i> MOUSE AIM <i>·</i> R RELOAD <i>·</i> SPACE DASH</div></div></div>
+    <div class="end-overlay hidden" id="endOverlay"><div class="end-card"><span class="eyebrow">OPERATION // TERMINATED</span><h2 id="endTitle">SIGNAL<br><em>LOST.</em></h2><p id="endCopy">The city is still out there.</p><div class="end-stats"><div><small>WAVE REACHED</small><b id="finalWave">01</b></div><div><small>HOSTILES ELIMINATED</small><b id="finalKills">00</b></div><div><small>CREDITS EARNED</small><b id="finalScore">000000</b></div></div><button class="deploy-btn" id="retryBtn"><span>REDEPLOY</span><b>↻</b></button></div></div>
+    <div class="help-tip" id="helpTip"><span>?</span> <div><b>FIELD GUIDE</b><br>Eliminate hostiles for credits. Survive each wave to earn a breather.</div><button id="closeTip">×</button></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
